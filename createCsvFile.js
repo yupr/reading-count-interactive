@@ -35,7 +35,7 @@ const outputCsv = (() => {
 const isFileExist = async () => {
   let isExist = false;
   try {
-    await fs.readFile('./2109.csv')
+    await fs.readFile('./2110.csv')
     isExist = true;
   } catch (err) {
     isExist = false;
@@ -55,5 +55,4 @@ const createNewFile = (async () => {
     }
   }
 })
-
 createNewFile()

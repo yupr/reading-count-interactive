@@ -16,8 +16,8 @@ const outputArray = () => {
         }
         resolve(output)
       })
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      console.log('error', err)
     }
   })
 }
