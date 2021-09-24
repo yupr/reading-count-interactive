@@ -50,8 +50,6 @@ const createNewFile = (async () => {
   //ファイルが存在しなかったら新規作成
   if (!isFile) {
     const output = await outputCsv();
-    console.log('output', output)
-
     if (output) {
       //書き出したいファイル名を指定
       await fs.writeFile('2110.csv', output)
