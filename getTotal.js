@@ -5,6 +5,7 @@ const parse = require('csv-parse')
 //csvファイルを配列オブジェクトに変換
 const outputArray = () => {
   return new Promise((resolve, reject) =>{
+    //集計したいファイル名を指定
     const fileData = fs.readFileSync('./2110.csv');
     parse(fileData, {
       columns: true,
