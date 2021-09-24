@@ -8,12 +8,15 @@ const initialValue = [{
 }]
 
 //その月分の日付と初期値が入力された配列オブジェクトを作成
-for (let i = 1; i < 31; i++) {
-  let data = {
-    date: initialValue[initialValue.length - 1].date + 1,
-    count: 0
+const createInitialValue = () =>{
+  for (let i = 1; i < 31; i++) {
+    let data = {
+      date: initialValue[initialValue.length - 1].date + 1,
+      count: 0
+    }
+    initialValue.push(data)
   }
-  initialValue.push(data)
+  return;
 }
 
 //配列オブジェクトをcsvに変換
@@ -45,6 +48,7 @@ const isFileExist = async () => {
 
 //変換されたcsvを新規ファイルで作成
 const createNewFile = (async () => {
+  createInitialValue()
   const isFile = await isFileExist();
   //ファイルが存在しなかったら新規作成
   if (!isFile) {
