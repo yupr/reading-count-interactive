@@ -27,10 +27,15 @@ const outputCsv = (() =>{
 
 //変換されたcsvを新規ファイルで作成
 const createNewFile = (async() =>{
-  const output = await outputCsv();
-  //書き出したいファイル名を指定
-  fs.writeFile('2110.csv', output, (err) =>{
-    if(err) console.log('err', err)
-  })
+  const isExistFile = !!(fs.readFileSync('./2109.csv'));
+
+  //ファイルが作られていなかったら実行
+  if(!isExistFile){
+    const output = !isExistFile && await outputCsv();
+    //書き出したいファイル名を指定
+    fs.writeFile('2110.csv', output, (err) =>{
+      if(err) console.log('err', err)
+    })
+  }
 }) 
 createNewFile()
