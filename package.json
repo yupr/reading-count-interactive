@@ -1,4 +1,10 @@
 {
+  "name": "tadoku",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yupr/tadoku.git",
+  "author": "yupr <12003186+yupr@users.noreply.github.com>",
+  "license": "MIT",
   "scripts": {
     "create": "node createCsvFile",
     "total": "node getTotal.js"
