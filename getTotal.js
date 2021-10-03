@@ -6,7 +6,7 @@ const outputArray = () => {
   return new Promise(async (resolve, reject) => {
     //集計したいファイル名を指定
     try {
-      const file = await fs.readFile('./Archive/2021/2108.csv')
+      const file = await fs.readFile('./Archive/2021/2109.csv')
       parse(file, {
         columns: true,
       }, (err, output) => {
