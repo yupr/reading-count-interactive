@@ -51,18 +51,19 @@ const writeTotalCount = async () => {
   let total = 0;
 
   const result = await outputArray(filePath);
-  result.forEach(element => {
-    if (element.month === month) {
-      element.count = monthCount;
+  result.forEach((data, index) => {
+    if (data.month === month) {
+      data.count = monthCount;
     }
 
-    if (element.month === 'total') {
-      element.count = total;
+    //最後の行(total)で集計結果をtotalのcountに代入
+    if (index === 12) {
+      data.count = total;
     } else {
       //1~12月のcountを集計
-      total += Number(element.count);
+      total += Number(data.count);
     }
-    row.push(element)
+    row.push(data)
   });
   const output = await outputCsv(row)
   await fs.writeFile(filePath, output);
