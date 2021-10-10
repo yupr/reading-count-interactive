@@ -2,14 +2,14 @@ const fs = require('fs').promises
 const stringify = require('csv-stringify')
 const parse = require('csv-parse')
 
+//ファイルが作成されているかチェック
 exports.isFileExist = async (filePath) => {
-  console.log('filePath', filePath)
   let isExist = false;
   try {
     await fs.readFile(filePath)
     isExist = true;
   } catch (err) {
-    // console.log('err', err)
+    console.log('err', err)
     isExist = false;
   }
   return isExist;
@@ -30,7 +30,7 @@ exports.outputArray = (filePath) => {
         resolve(output)
       })
     } catch (err) {
-      console.log('error', err)
+      console.log('err', err)
     }
   })
 }
