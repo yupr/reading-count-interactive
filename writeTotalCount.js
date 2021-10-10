@@ -14,7 +14,7 @@ const initialValue = [{
 
 const filePath = './Archive/2021/total.csv';
 
-//最後尾にtotalとcount(その年の合計)を追加し、初期値をセット
+//初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
 const createInitialValue = () => {
   for (let i = 1; i < 12; i++) {
     let data = {

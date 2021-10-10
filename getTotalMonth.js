@@ -1,15 +1,15 @@
 const { outputArray } = require('./common');
 
-//-----コマンドライン-------
+//-----コマンドライン引数-------
 // const program = require('commander')
-// コマンドライン引数をcommanderでパース
 // program.parse(process.argv);
 //ファイルパスをprocess.args配列から取り出す
 // const filePath = program.args[0]
 //-----------------------
+
 const filePath = './2110.csv'
 
-//集計するfilepathの月を抽出
+//集計するfilePathの月を抽出
 const getMonnthFormFilePath = () => {
   let month = filePath.slice(filePath.length - 6, filePath.length - 4)
   if (month.slice(0, 1) === '0') {
@@ -18,7 +18,7 @@ const getMonnthFormFilePath = () => {
   return month;
 }
 
-//変換されたオブジェクトからcountのtotalを集計
+//オブジェクトに変換後、countを集計
 const getTotalCount = async () => {
   const month = getMonnthFormFilePath();
   const result = await outputArray(filePath);
