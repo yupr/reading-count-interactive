@@ -9,7 +9,7 @@ exports.isFileExist = async (filePath) => {
     await fs.readFile(filePath)
     isExist = true;
   } catch (err) {
-    // console.log('err', err)
+    console.log('err', err)
     isExist = false;
   }
   return isExist;
@@ -30,7 +30,7 @@ exports.outputArray = (filePath) => {
         resolve(output)
       })
     } catch (err) {
-      console.log('error', err)
+      console.log('err', err)
     }
   })
 }

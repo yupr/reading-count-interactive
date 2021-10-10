@@ -7,7 +7,7 @@ const { outputArray } = require('./common');
 //ファイルパスをprocess.args配列から取り出す
 // const filePath = program.args[0]
 //-----------------------
-const filePath = './Archive/2021/2109.csv'
+const filePath = './2110.csv'
 
 //集計するfilepathの月を抽出
 const getMonnthFormFilePath = () => {
@@ -30,7 +30,7 @@ const getTotalCount = async () => {
   console.log( month + '月合計:', totalMonth)
   return {
     monthCount: totalMonth,
-    month: Number(month)
+    month: month
   }
 }
 getTotalCount()

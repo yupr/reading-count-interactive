@@ -12,7 +12,7 @@ const initialValue = [{
   count: 0
 }]
 
-const filePath = './Test/2021/total.csv';
+const filePath = './Archive/2021/total.csv';
 
 //最後尾にtotalとcount(その年の合計)を追加し、初期値をセット
 const createInitialValue = () => {
@@ -52,7 +52,6 @@ const writeTotalCount = async () => {
 
   const result = await outputArray(filePath);
   result.forEach(element => {
-    console.log('element', element)
     if (element.month === month) {
       element.count = monthCount;
     }
