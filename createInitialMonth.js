@@ -7,7 +7,7 @@ const initialValue = [{
   count: 0
 }]
 
-//その月分の日付と初期値が入力された配列オブジェクトを作成
+//作成月の日付と初期値が入力された配列オブジェクトを作成
 const createInitialValue = () =>{
   for (let i = 1; i < 31; i++) {
     let data = {
@@ -48,10 +48,10 @@ const isFileExist = async () => {
 
 //変換されたcsvを新規ファイルで作成
 const createNewFile = (async () => {
-  createInitialValue()
   const isFile = await isFileExist();
   //ファイルが存在しなかったら新規作成
   if (!isFile) {
+    createInitialValue()
     const output = await outputCsv();
     if (output) {
       //書き出したいファイル名を指定
