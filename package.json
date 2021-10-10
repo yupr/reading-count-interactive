@@ -1,8 +1,8 @@
 {
-  "name": "tadoku",
+  "name": "reading-count",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/yupr/tadoku.git",
+  "repository": "https://github.com/yupr/reading-count.git",
   "author": "yupr <12003186+yupr@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
