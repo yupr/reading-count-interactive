@@ -6,8 +6,8 @@
   "author": "yupr <12003186+yupr@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "create": "node createInitialMonth",
-    "total": "node getTotalMonth.js"
+    "createFile": "node createInitialMonth",
+    "total": "node getTotalMonth"
   },
   "dependencies": {
     "commander": "^8.2.0",

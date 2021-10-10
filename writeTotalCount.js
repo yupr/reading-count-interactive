@@ -32,15 +32,13 @@ const createInitialValue = () => {
 }
 
 const writeTotalCount = async () => {
-  //ファイルが作成されているかチェック
   const isFile = await isFileExist(filePath);
-
   //ファイルがなかったら新規作成
   if (!isFile) {
     createInitialValue()
     const output = await outputCsv(initialValue);
     if (output) {
-      //書き出したいファイル名を指定
+      //csvファイルを指定のfilePathに新規作成
       await fs.writeFile(filePath, output)
     }
   }
@@ -62,14 +60,12 @@ const writeTotalCount = async () => {
     if (element.month === 'total') {
       element.count = total;
     } else {
-      //1~12月のcountの合計を代入
+      //1~12月のcountを集計
       total += Number(element.count);
     }
     row.push(element)
   });
-
   const output = await outputCsv(row)
   await fs.writeFile(filePath, output);
 }
-
 writeTotalCount();

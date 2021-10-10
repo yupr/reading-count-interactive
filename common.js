@@ -2,8 +2,8 @@ const fs = require('fs').promises
 const stringify = require('csv-stringify')
 const parse = require('csv-parse')
 
+//ファイルが作成されているかチェック
 exports.isFileExist = async (filePath) => {
-  console.log('filePath', filePath)
   let isExist = false;
   try {
     await fs.readFile(filePath)
