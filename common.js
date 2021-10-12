@@ -36,16 +36,20 @@ exports.outputArray = (filePath) => {
 }
 
 //配列をcsvに変換
-exports.outputCsv = ((data) => {
+exports.outputCsv = (data) => {
   return new Promise((resolve, reject) => {
-    stringify(data, {
-      header: true
-    }, (err, output) => {
-      if (err) {
-        reject(err)
-        return;
-      }
-      resolve(output)
-    })
+    try {
+      stringify(data, {
+        header: true
+      }, (err, output) => {
+        if (err) {
+          reject(err)
+          return;
+        }
+        resolve(output)
+      })
+    } catch (err) {
+      console.log('err', err)
+    }
   })
-})
+}
