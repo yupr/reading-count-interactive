@@ -10,7 +10,7 @@ const initialValue = [{
   count: 0
 }]
 
-const filePath = './2111.csv';
+const filePath = './output/2111.csv';
 
 //作成月の日付と初期値が入力された配列オブジェクトを作成
 const createInitialValue = () => {
