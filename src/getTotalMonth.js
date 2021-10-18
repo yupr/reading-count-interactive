@@ -7,7 +7,7 @@ const { outputArray } = require('./common');
 // const filePath = program.args[0]
 //-----------------------
 
-const filePath = './2110.csv'
+const filePath = './output/2110.csv'
 
 //集計するfilePathの月を抽出
 const getMonnthFormFilePath = () => {
