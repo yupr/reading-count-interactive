@@ -5,15 +5,15 @@
   "repository": "https://github.com/yupr/reading-count.git",
   "author": "yupr <12003186+yupr@users.noreply.github.com>",
   "license": "MIT",
-  "husky":{
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "scripts": {
     "create-csv": "node src/createInitialMonth.js",
     "total": "node src/getTotalMonth.js",
     "lint-staged": "eslint --ext .js src --ignore-path .gitignore"
+  },
+  "husky":{
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "commander": "^8.2.0",
