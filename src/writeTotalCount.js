@@ -50,7 +50,8 @@ const writeTotalCount = async () => {
   let row = [];
   let total = 0;
 
-  const result = await outputArray(filePath);
+  const file = await fs.readFile(filePath)
+  const result = await outputArray(file);
   result.forEach((data, index) => {
     if (data.month === month) {
       data.count = monthCount;

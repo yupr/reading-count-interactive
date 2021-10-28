@@ -16,10 +16,9 @@ exports.isFileExist = async (filePath) => {
 }
 
 //csvを配列に変換
-exports.outputArray = (filePath) => {
-  return new Promise(async (resolve, reject) => {
+exports.outputArray = (file) => {
+  return new Promise((resolve, reject) => {
     try {
-      const file = await fs.readFile(filePath)
       parse(file, {
         columns: true,
       }, (err, output) => {
