@@ -1,4 +1,5 @@
 const { outputArray } = require('./common');
+const fs = require('fs').promises
 
 //-----コマンドライン引数-------
 // const program = require('commander')
@@ -21,7 +22,8 @@ const getMonnthFormFilePath = () => {
 //オブジェクトに変換後、countを集計
 const getTotalCount = async () => {
   const month = getMonnthFormFilePath();
-  const result = await outputArray(filePath);
+  const file = await fs.readFile(filePath)
+  const result = await outputArray(file);
   let totalMonth = 0;
   for (let i = 0; i < result.length; i++) {
     const wordCount = Number(result[i].count)

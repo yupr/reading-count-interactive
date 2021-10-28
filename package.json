@@ -8,12 +8,8 @@
   "scripts": {
     "create-csv": "node src/createInitialMonth.js",
     "total": "node src/getTotalMonth.js",
-    "lint-staged": "eslint --ext .js src --ignore-path .gitignore"
-  },
-  "husky":{
-    "hooks": {
-      "pre-commit": "npm lint-staged"
-    }
+    "lint-staged": "eslint --ext .js src --ignore-path .gitignore",
+    "prepare": "husky install"
   },
   "dependencies": {
     "commander": "^8.2.0",
@@ -22,7 +18,7 @@
   },
   "devDependencies": {
     "eslint": "^8.1.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "lint-staged": "^11.2.6"
   }
 }
