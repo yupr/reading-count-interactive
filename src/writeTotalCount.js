@@ -59,10 +59,12 @@ const writeTotalCount = async () => {
 
     //最後の行(total)で集計結果をtotalのcountに代入
     if (index === 12) {
+      console.log('dddd', total)
       data.count = total;
     } else {
       //1~12月のcountを集計
       total += Number(data.count);
+      console.log('total', total)
     }
     row.push(data)
   });
