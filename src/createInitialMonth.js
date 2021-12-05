@@ -6,7 +6,7 @@ const {
 
 //作成したい日時と文字数の初期値
 const initialValue = [{
-  date: 211101,
+  date: 211201,
   count: 0
 }]
 
