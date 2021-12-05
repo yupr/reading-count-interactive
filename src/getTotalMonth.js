@@ -8,7 +8,7 @@ const fs = require('fs').promises
 // const filePath = program.args[0]
 //-----------------------
 
-const filePath = './output/2110.csv'
+const filePath = './output/2111.csv'
 
 //集計するfilePathの月を抽出
 const getMonnthFormFilePath = () => {
