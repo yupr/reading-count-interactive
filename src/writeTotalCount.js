@@ -33,12 +33,11 @@ const createInitialValue = async() => {
 const writeTotalCount = async () => {
   await createInitialValue()
 
-  let total = 0;
-  const { monthCount, month } = await getTotalCount;
-  const file = await readFile(filePath, { isUpdate: true });
-
   //ファイルがあれば,アップデートする。
+  const file = await readFile(filePath, { isUpdate: true });
+  const { monthCount, month } = await getTotalCount;
   if(file){
+    let total = 0;
     const result = await outputArray(file);
     result.forEach((data, index) => {
       if (data.month === month) {
@@ -56,5 +55,4 @@ const writeTotalCount = async () => {
     await fs.writeFile(filePath, output);
   }
 };
-
 writeTotalCount();
