@@ -37,5 +37,4 @@ const getTotalCount = async () => {
     };
   }
 };
-
 exports.getTotalCount = getTotalCount();
