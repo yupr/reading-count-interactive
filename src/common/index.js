@@ -3,20 +3,30 @@ const stringify = require("csv-stringify");
 const parse = require("csv-parse");
 
 //ファイルが作成されているかチェック
-exports.isFileExist = async (filePath) => {
+exports.readFile = async (filePath, { isCreate, isUpdate }) => {
   try {
     const file = await fs.readFile(filePath);
-    //ファイルがあれば、例外処理に移動
-    if(file){
-      throw new Error('file_is_Exist')
+    if (file) {
+      if (isCreate) {
+        console.log(
+          "fileが既に存在しているため、新規作成したい場合は filePath を修正してください。"
+        );
+      } else if (isUpdate) {
+        console.log("fileが見つかりましたのでアップデートします。");
+      }
     }
+
+    return file;
   } catch (err) {
-    if(err.message === 'file_is_Exist'){
-      console.log('ファイルが既に存在しているため、作成したい場合は filePath を修正してください。')
-      return true;
-    }else{
-      console.log('ファイルがないので、作成します。')
+    if (err.code === "ENOENT") {
+      if (isCreate) {
+        console.log("fileが見つからないので新規作成します。");
+      } else {
+        console.log("fileが見つかりません。filePathを確認ください。");
+      }
       return false;
+    } else {
+      throw new Error(err);
     }
   }
 };
