@@ -6,16 +6,13 @@ const parse = require("csv-parse");
 exports.readFile = async (filePath, { isCreate, isUpdate }) => {
   try {
     const file = await fs.readFile(filePath);
-    if (file) {
-      if (isCreate) {
-        console.log(
-          "fileが既に存在しているため、新規作成したい場合は filePath を修正してください。"
-        );
-      } else if (isUpdate) {
-        console.log("fileが見つかりましたのでアップデートします。");
-      }
+    if (isCreate) {
+      console.log(
+        "fileが既に存在しているため、新規作成したい場合は filePath を修正してください。"
+      );
+    } else if (isUpdate) {
+      console.log("fileが見つかりましたのでアップデートします。");
     }
-
     return file;
   } catch (err) {
     if (err.code === "ENOENT") {
@@ -24,10 +21,10 @@ exports.readFile = async (filePath, { isCreate, isUpdate }) => {
       } else {
         console.log("fileが見つかりません。filePathを確認ください。");
       }
-      return false;
     } else {
       throw new Error(err);
     }
+    return false;
   }
 };
 

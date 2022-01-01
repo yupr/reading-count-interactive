@@ -1,26 +1,25 @@
 const { readFile, outputArray, outputCsv } = require("./common");
 const { getTotalCount } = require("./getTotalMonth");
 const fs = require("fs").promises;
+const clonedeep = require("lodash/clonedeep");
 
 const initialValue = [];
 const filePath = "./Archive/2022/total.csv";
 
 //初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
-const createInitialValue = async() => {
+const createInitialValue = async () => {
   const file = await readFile(filePath, { isCreate: true });
-
   //ファイルがなかったら新規作成
-  if(!file){
+  if (!file) {
     for (let i = 0; i < 12; i++) {
       initialValue.push({ month: `${1 + i}`, count: 0 });
     }
-    //最後尾にtotalと初期値をセット
-    initialValue.push({
-      month: "total",
-      count: 0,
-    });
-
-    const output = await outputCsv(initialValue);
+    //最後尾にtotalと初期値(count = 0)をセット
+    const createValue = clonedeep([
+      ...initialValue,
+      ...[{ month: "total", count: 0 }],
+    ]);
+    const output = await outputCsv(createValue);
     if (output) {
       //csvファイルを指定のfilePathに新規作成
       await fs.writeFile(filePath, output);
@@ -29,16 +28,13 @@ const createInitialValue = async() => {
   return;
 };
 
-
 const writeTotalCount = async () => {
-  await createInitialValue()
-
-  let total = 0;
-  const { monthCount, month } = await getTotalCount;
-  const file = await readFile(filePath, { isUpdate: true });
-
+  await createInitialValue();
   //ファイルがあれば,アップデートする。
-  if(file){
+  const file = await readFile(filePath, { isUpdate: true });
+  const { monthCount, month } = await getTotalCount;
+  if (file && monthCount && month) {
+    let total = 0;
     const result = await outputArray(file);
     result.forEach((data, index) => {
       if (data.month === month) {
@@ -56,5 +52,4 @@ const writeTotalCount = async () => {
     await fs.writeFile(filePath, output);
   }
 };
-
 writeTotalCount();
