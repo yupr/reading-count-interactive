@@ -1,7 +1,7 @@
 const fs = require("fs").promises;
 const { readFile, outputCsv } = require("./common");
 
-const filePath = "./output/2111.csv";
+const filePath = "./output/2201.csv";
 const initialMonth = [];
 
 //作成月の日付と初期値が入力された配列オブジェクトを作成
