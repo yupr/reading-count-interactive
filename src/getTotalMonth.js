@@ -3,7 +3,7 @@ const { readFile, outputArray } = require("./common");
 //-----コマンドライン引数-------
 // const program = require('commander')
 // program.parse(process.argv);
-//ファイルパスをprocess.args配列から取り出す
+// ファイルパスをprocess.args配列から取り出す
 // const filePath = program.args[0]
 //-----------------------
 
