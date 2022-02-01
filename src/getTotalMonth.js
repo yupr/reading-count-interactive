@@ -7,7 +7,9 @@ const { readFile, outputArray } = require("./common");
 // const filePath = program.args[0]
 //-----------------------
 
-const filePath = "./output/2112.csv";
+// 指定した月の多読数をカウント
+
+const filePath = "./output/2201.csv";
 
 //集計するfilePathの月を抽出
 const getMonthFromFilePath = () => {
