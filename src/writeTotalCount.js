@@ -26,7 +26,6 @@ const createInitialValue = async () => {
 
 //ファイルがあれば,アップデート
 const writeTotalCount = async () => {
-  //ファイルチェック
   const isFile = existsSync(filePath);
   if (!isFile) await createInitialValue();
   const { totalMonth, month } = await getTotalCount();
