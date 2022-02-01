@@ -1,7 +1,8 @@
-const fs = require("fs").promises;
-const { readFile, outputCsv } = require("./common");
+import { writeFile } from "fs/promises";
+import { existsSync } from "fs";
+import { outputCsv } from "./common/index.js";
 
-const filePath = "./output/2201.csv";
+const filePath = "./output/2202.csv";
 const initialMonth = [];
 
 //作成月の日付と初期値が入力された配列オブジェクトを作成
@@ -10,21 +11,20 @@ const createInitialMonth = () => {
     //作成したい年月にセット
     initialMonth.push({ date: `${211101 + i}`, count: 0 });
   }
-  return;
 };
 
 //変換されたcsvを新規ファイルで作成
 const createNewFile = async () => {
-  const file = !!(await readFile(filePath, { isCreate: true }));
-
-  //ファイルが存在しなかったら新規作成
-  if (!file) {
+  const isFile = existsSync(filePath)
+  if (!isFile) {
     createInitialMonth();
     const output = await outputCsv(initialMonth);
     if (output) {
       //書き出したいファイル名を指定
-      await fs.writeFile(filePath, output);
+      await writeFile(filePath, output);
     }
+  }else{
+    console.log('fileが見つかったので、作成できませんでした。')
   }
 };
 createNewFile();

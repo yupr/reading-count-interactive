@@ -1,13 +1,7 @@
-const { readFile, outputArray } = require("./common");
-
-//-----コマンドライン引数-------
-// const program = require('commander')
-// program.parse(process.argv);
-// ファイルパスをprocess.args配列から取り出す
-// const filePath = program.args[0]
-//-----------------------
-
-const filePath = "./output/2112.csv";
+// 指定した月の多読数をカウント
+import { readFile, outputArray } from "./common/index.js";
+import { existsSync } from "fs";
+const filePath = "./output/2201.csv";
 
 //集計するfilePathの月を抽出
 const getMonthFromFilePath = () => {
@@ -19,11 +13,12 @@ const getMonthFromFilePath = () => {
 };
 
 //オブジェクトに変換後、countを集計
-const getTotalCount = async () => {
+export const getTotalCount = async () => {
   const month = getMonthFromFilePath();
-  const file = await readFile(filePath, { isCreate: false });
+  const isFile = existsSync(filePath)
 
-  if (file) {
+  if (isFile) {
+    const file = await readFile(filePath);
     const result = await outputArray(file);
     let totalMonth = 0;
     for (let i = 0; i < result.length; i++) {
@@ -32,9 +27,8 @@ const getTotalCount = async () => {
     }
     console.log(month + "月合計:", totalMonth);
     return {
-      monthCount: Number(totalMonth),
-      month: month,
+      totalMonth,
+      month,
     };
   }
 };
-exports.getTotalCount = getTotalCount();
