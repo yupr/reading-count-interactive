@@ -9,7 +9,8 @@
   "scripts": {
     "create-csv": "node src/createInitialMonth.js",
     "total": "node src/getTotalMonth.js",
-    "lint": "eslint --ext .js src --ignore-path .gitignore",
+    "lint": "eslint --ext .js src",
+    "fmt": "prettier --write 'src/**/*.{js,ts}'",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -20,7 +21,9 @@
   },
   "devDependencies": {
     "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.4.0",
     "husky": "^7.0.0",
-    "lint-staged": "^11.2.6"
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.5.1"
   }
 }

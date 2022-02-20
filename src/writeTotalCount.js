@@ -1,11 +1,11 @@
-import { readFile, outputArray, outputCsv } from "./common/index.js";
-import { getTotalCount } from "./getTotalMonth.js";
-import { writeFile } from "fs/promises";
-import { existsSync } from "fs";
-import clonedeep from "lodash/clonedeep.js";
+import { readFile, outputArray, outputCsv } from './common/index.js';
+import { getTotalCount } from './getTotalMonth.js';
+import { writeFile } from 'fs/promises';
+import { existsSync } from 'fs';
+import clonedeep from 'lodash/clonedeep.js';
 
 const initialValue = [];
-const filePath = "./Archive/2022/total.csv";
+const filePath = './Archive/2022/total.csv';
 
 //初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
 const createInitialValue = async () => {
@@ -15,7 +15,7 @@ const createInitialValue = async () => {
   //最後尾にtotalと初期値(count = 0)をセット
   const createValue = clonedeep([
     ...initialValue,
-    ...[{ month: "total", count: 0 }],
+    ...[{ month: 'total', count: 0 }],
   ]);
   const output = await outputCsv(createValue);
   if (output) {

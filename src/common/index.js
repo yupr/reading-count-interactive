@@ -1,6 +1,6 @@
-import fs from "fs/promises";
-import stringify from "csv-stringify";
-import parse from "csv-parse";
+import fs from 'fs/promises';
+import stringify from 'csv-stringify';
+import parse from 'csv-parse';
 
 //ファイルが作成されているかチェック
 export const readFile = async (filePath) => {
@@ -8,7 +8,7 @@ export const readFile = async (filePath) => {
     const file = await fs.readFile(filePath);
     return file;
   } catch (err) {
-    console.log("err", err);
+    console.log('err', err);
     return false;
   }
 };
@@ -31,7 +31,7 @@ export const outputArray = (file) => {
         }
       );
     } catch (err) {
-      console.log("CSVファイルを配列に変換できませんでした。", err);
+      console.log('CSVファイルを配列に変換できませんでした。', err);
     }
   });
 };
@@ -54,7 +54,7 @@ export const outputCsv = (data) => {
         }
       );
     } catch (err) {
-      console.log("配列をCSVファイルに変換できませんでした。", err);
+      console.log('配列をCSVファイルに変換できませんでした。', err);
     }
   });
 };
