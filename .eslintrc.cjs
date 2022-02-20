@@ -10,8 +10,8 @@ module.exports = {
     "sourceType": "module"
   },
   rules: {
-    "no-console": "off", //consoleを許可しない
-    "no-var": 2, // varは禁止
+    "no-console": "off", //consoleを許容
+    "no-var": "error", // varは禁止
     "no-extra-semi": "warn", //余分なセミコロンは禁止(文末に ;; とか)
   },
 };
