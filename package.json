@@ -10,7 +10,7 @@
     "create-csv": "node src/createInitialMonth.js",
     "total": "node src/getTotalMonth.js",
     "lint": "eslint --ext .js src",
-    "fmt": "prettier --write 'src/**/*.{js,ts}'",
+    "fmt": "prettier --write '**/*.{cjs,js,ts}'",
     "prepare": "husky install"
   },
   "dependencies": {
