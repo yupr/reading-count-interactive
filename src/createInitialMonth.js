@@ -2,7 +2,7 @@ import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { outputCsv } from './common/index.js';
 
-const createDate = '2203'
+const createDate = '2203';
 const filePath = `./output/${createDate}.csv`;
 const initialMonth = [];
 
@@ -10,7 +10,7 @@ const initialMonth = [];
 const createInitialMonth = () => {
   for (let i = 0; i < 31; i++) {
     //作成したい年月にセット
-    const firstDate = createDate + '01'
+    const firstDate = createDate + '01';
     initialMonth.push({ date: `${Number(firstDate) + i}`, count: 0 });
   }
 };
