@@ -1,7 +1,7 @@
 // 指定した月の多読数をカウント
 import { readFile, outputArray } from './common/index.js';
 import { existsSync } from 'fs';
-const filePath = './output/2201.csv';
+const filePath = './output/2203.csv';
 
 //集計するfilePathの月を抽出
 const getMonthFromFilePath = () => {

@@ -2,14 +2,16 @@ import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { outputCsv } from './common/index.js';
 
-const filePath = './output/2202.csv';
+const createDate = '2203'
+const filePath = `./output/${createDate}.csv`;
 const initialMonth = [];
 
 //作成月の日付と初期値が入力された配列オブジェクトを作成
 const createInitialMonth = () => {
   for (let i = 0; i < 31; i++) {
     //作成したい年月にセット
-    initialMonth.push({ date: `${211101 + i}`, count: 0 });
+    const firstDate = createDate + '01'
+    initialMonth.push({ date: `${Number(firstDate) + i}`, count: 0 });
   }
 };
 
