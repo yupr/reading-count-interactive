@@ -1,8 +1,12 @@
 import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { outputCsv } from './common/index.js';
+import program from 'commander';
 
-const createDate = '2203';
+// コマンドライン引数をパース
+program.parse(process.argv);
+
+const createDate = program.args[0];
 const filePath = `./output/${createDate}.csv`;
 const initialMonth = [];
 
@@ -26,7 +30,9 @@ const createNewFile = async () => {
       await writeFile(filePath, output);
     }
   } else {
-    console.log('fileが見つかったので、作成できませんでした。');
+    console.log(
+      '入力した日付に当たるCSVファイルが既に存在するので、作成できませんでした。'
+    );
   }
 };
 createNewFile();

@@ -9,8 +9,12 @@ const filePath = './Archive/2022/total.csv';
 
 //初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
 const createInitialValue = async () => {
-  for (let i = 0; i < 12; i++) {
-    initialValue.push({ month: `${1 + i}`, count: 0 });
+  for (let i = 1; i <= 12; i++) {
+    if (i < 10) {
+      initialValue.push({ month: `0 + ${i}`, count: 0 });
+    } else {
+      initialValue.push({ month: i, count: 0 });
+    }
   }
   //最後尾にtotalと初期値(count = 0)をセット
   const createValue = clonedeep([
@@ -28,15 +32,17 @@ const createInitialValue = async () => {
 const writeTotalCount = async () => {
   const isFile = existsSync(filePath);
   if (!isFile) await createInitialValue();
-  const { totalMonth, month } = await getTotalCount();
 
-  if (isFile && totalMonth && month) {
+  const { monthCount, month } = await getTotalCount();
+
+  if (isFile && monthCount && month) {
+    let total = 0;
     const file = await readFile(filePath);
     const result = await outputArray(file);
-    let total = 0;
+
     result.forEach((data, index) => {
       if (data.month === month) {
-        data.count = totalMonth;
+        data.count = monthCount;
       }
       //最後尾で集計結果をtotalのcountに代入
       if (index === 12) {

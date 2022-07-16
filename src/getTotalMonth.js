@@ -1,18 +1,22 @@
 // 指定した月の多読数をカウント
 import { readFile, outputArray } from './common/index.js';
 import { existsSync } from 'fs';
-const filePath = './output/2203.csv';
+import program from 'commander';
 
-//集計するfilePathの月を抽出
+// コマンドライン引数をパース
+program.parse(process.args);
+
+const date = program.args[0];
+const filePath = `./output/${date}.csv`;
+
+// 集計するfilePathの月を抽出
 const getMonthFromFilePath = () => {
-  let month = filePath.slice(filePath.length - 6, filePath.length - 4);
-  if (month.slice(0, 1) === '0') {
-    month = month.slice(1, 2);
-  }
+  let month = date.slice(2, 4);
+
   return month;
 };
 
-//オブジェクトに変換後、countを集計
+// オブジェクトに変換後、countを集計
 export const getTotalCount = async () => {
   const month = getMonthFromFilePath();
   const isFile = existsSync(filePath);
@@ -20,14 +24,14 @@ export const getTotalCount = async () => {
   if (isFile) {
     const file = await readFile(filePath);
     const result = await outputArray(file);
-    let totalMonth = 0;
+    let monthCount = 0;
     for (let i = 0; i < result.length; i++) {
       const wordCount = Number(result[i].count);
-      totalMonth += wordCount;
+      monthCount += wordCount;
     }
-    console.log(month + '月合計:', totalMonth);
+    console.log(month + '月合計:', monthCount);
     return {
-      totalMonth,
+      monthCount,
       month,
     };
   }
