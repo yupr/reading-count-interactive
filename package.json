@@ -8,8 +8,8 @@
   "type": "module",
   "scripts": {
     "create-csv": "node src/createInitialMonth.js",
-    "create-csv-confirm": "echo 作成したい日付を例に倣って入力してください。例: 2022年7月分 を作成したい場合、2207と入力する。",
     "writeTotalCount": "node src/writeTotalCount.js",
+    "create-csv-confirm": "echo 作成したい日付を例に倣って入力してください。例: 2022年7月分 を作成したい場合、2207と入力する。",
     "lint": "eslint --ext 'src/**/*.{ts,js}'",
     "fmt": "prettier --write 'src/**/*.{cjs,js,ts}'",
     "prepare": "husky install"

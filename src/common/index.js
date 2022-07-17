@@ -8,7 +8,11 @@ export const readFile = async (filePath) => {
     const file = await fs.readFile(filePath);
     return file;
   } catch (err) {
-    console.log('err', err);
+    if (err.code === 'ENOENT') {
+      console.log('読み込む対象のファイルが存在しない。');
+    } else {
+      console.log('err', err);
+    }
     return false;
   }
 };
