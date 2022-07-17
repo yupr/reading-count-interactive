@@ -11,7 +11,7 @@ export const readFile = async (filePath) => {
     if (err.code === 'ENOENT') {
       console.log('読み込む対象のファイルが存在しない。');
     } else {
-      console.log('エラー', err);
+      console.log('エラー:', err);
     }
     return false;
   }
@@ -28,7 +28,7 @@ export const outputArray = (file) => {
       (err, output) => {
         if (err) {
           console.log('CSVファイルを配列に変換できませんでした。');
-          console.log('エラーコード:', err);
+          console.log('エラー:', err);
           reject(err);
         }
         resolve(output);
@@ -52,7 +52,7 @@ export const outputCsv = (data) => {
       );
     } catch (err) {
       console.log('配列をCSVファイルに変換できませんでした。');
-      console.log('エラーコード:', err.code);
+      console.log('エラー:', err);
     }
   });
 };
