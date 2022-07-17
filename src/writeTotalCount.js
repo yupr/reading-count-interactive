@@ -1,4 +1,4 @@
-import { readFile, outputArray, outputCsv } from './common/index.js';
+import { readFile, parseCsvToArray, outputCsv } from './common/index.js';
 import { getMonthTotalCount } from './getMonthTotalCount.js';
 import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
@@ -37,9 +37,8 @@ const writeTotalCount = async () => {
   if (!result) return;
 
   const { monthTotalCount, month } = result;
-
   const file = await readFile(filePath);
-  const outputArrayData = await outputArray(file);
+  const outputArrayData = await parseCsvToArray(file);
 
   let total = 0;
   outputArrayData.forEach((data, index) => {

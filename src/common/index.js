@@ -18,7 +18,7 @@ export const readFile = async (filePath) => {
 };
 
 //csvを配列に変換
-export const outputArray = (file) => {
+export const parseCsvToArray = (file) => {
   return new Promise((resolve, reject) => {
     parse(
       file,
