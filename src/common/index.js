@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import stringify from 'csv-stringify';
+import { stringify } from 'csv-stringify';
 import parse from 'csv-parse';
 
 //ファイルが作成されているかチェック
@@ -11,7 +11,7 @@ export const readFile = async (filePath) => {
     if (err.code === 'ENOENT') {
       console.log('読み込む対象のファイルが存在しない。');
     } else {
-      console.log('err', err);
+      console.log('エラー', err);
     }
     return false;
   }
@@ -20,23 +20,20 @@ export const readFile = async (filePath) => {
 //csvを配列に変換
 export const outputArray = (file) => {
   return new Promise((resolve, reject) => {
-    try {
-      parse(
-        file,
-        {
-          columns: true,
-        },
-        (err, output) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(output);
+    parse(
+      file,
+      {
+        columns: true,
+      },
+      (err, output) => {
+        if (err) {
+          console.log('CSVファイルを配列に変換できませんでした。');
+          console.log('エラーコード:', err);
+          reject(err);
         }
-      );
-    } catch (err) {
-      console.log('CSVファイルを配列に変換できませんでした。', err);
-    }
+        resolve(output);
+      }
+    );
   });
 };
 
@@ -50,15 +47,12 @@ export const outputCsv = (data) => {
           header: true,
         },
         (err, output) => {
-          if (err) {
-            reject(err);
-            return;
-          }
           resolve(output);
         }
       );
     } catch (err) {
-      console.log('配列をCSVファイルに変換できませんでした。', err);
+      console.log('配列をCSVファイルに変換できませんでした。');
+      console.log('エラーコード:', err.code);
     }
   });
 };

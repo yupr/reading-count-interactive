@@ -27,13 +27,15 @@ const createNewFile = async () => {
     console.log(
       '入力した日付のCSVファイルが既に存在するので、作成しませんでした。'
     );
-  } else {
-    createInitialMonth();
-    const output = await outputCsv(initialMonth);
-    if (!output) return;
-
-    //書き出したいファイル名を指定
-    await writeFile(filePath, output);
+    return;
   }
+
+  createInitialMonth();
+  const output = await outputCsv(initialMonth);
+  if (!output) return;
+
+  //書き出したいファイル名を指定
+  await writeFile(filePath, output);
 };
+
 createNewFile();
