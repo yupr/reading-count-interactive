@@ -1,7 +1,9 @@
 import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { outputCsv } from './common/index.js';
-import program from 'commander';
+import { Command } from 'commander';
+
+const program = new Command();
 
 //コマンドライン引数をパース
 program.parse(process.argv);
