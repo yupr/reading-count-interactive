@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import { stringify } from 'csv-stringify';
-import parse from 'csv-parse';
+import { parse } from 'csv-parse';
 
 //ファイルが作成されているかチェック
 export const readFile = async (filePath) => {

@@ -1,7 +1,9 @@
 //指定した月の多読数をカウント
 import { readFile, parseCsvToArray } from './common/index.js';
 import { existsSync } from 'fs';
-import program from 'commander';
+import { Command } from 'commander';
+
+const program = new Command();
 
 //コマンドライン引数をパース
 program.parse(process.args);
@@ -41,3 +43,5 @@ export const getMonthTotalCount = async () => {
     month,
   };
 };
+
+getMonthTotalCount();

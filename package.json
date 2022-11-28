@@ -9,15 +9,15 @@
   "scripts": {
     "create-csv": "node src/createInitialMonth.js",
     "write-total": "node src/writeTotalCount.js",
-    "month-total": "node src/getMonthTotalCount.js",
+    "total": "node src/getMonthTotalCount.js",
     "create-csv-confirm": "echo 作成したい日付を例に倣って入力してください。例: 2022年7月分 を作成したい場合、2207と入力する。",
     "lint": "eslint --ext 'src/**/*.{ts,js}'",
     "fmt": "prettier --write 'src/**/*.{cjs,js,ts}'",
     "prepare": "husky install"
   },
   "dependencies": {
-    "commander": "^8.2.0",
-    "csv-parse": "^4.16.3",
+    "commander": "^9.4.1",
+    "csv-parse": "^5.3.3",
     "csv-stringify": "^6.2.0",
     "lodash": "^4.17.21"
   },
@@ -25,8 +25,8 @@
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^7.0.0",
-    "lint-staged": "^11.2.6",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
     "prettier": "^2.5.1"
   }
 }
