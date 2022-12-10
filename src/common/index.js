@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import { stringify } from 'csv-stringify';
 import { parse } from 'csv-parse';
 
-//ファイルが作成されているかチェック
+// ファイルが作成されているかチェック
 export const readFile = async (filePath) => {
   try {
     const file = await fs.readFile(filePath);
@@ -17,7 +17,7 @@ export const readFile = async (filePath) => {
   }
 };
 
-//csvを配列に変換
+// csvを配列に変換
 export const parseCsvToArray = (file) => {
   return new Promise((resolve, reject) => {
     parse(
@@ -37,7 +37,7 @@ export const parseCsvToArray = (file) => {
   });
 };
 
-//配列をcsvに変換
+// 配列をcsvに変換
 export const outputCsv = (data) => {
   return new Promise((resolve, reject) => {
     try {

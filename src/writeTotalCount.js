@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 const filePath = './Archive/2022/total.csv';
 
-//初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
+// 初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
 const createInitialValue = async () => {
   const initialValue = [];
 
@@ -27,7 +27,7 @@ const createInitialValue = async () => {
   await writeFile(filePath, outputCsvData);
 };
 
-//ファイルがあれば,アップデート
+// ファイルがあれば,アップデート
 const writeTotalCount = async () => {
   const isFile = existsSync(filePath);
   if (!isFile) await createInitialValue();
