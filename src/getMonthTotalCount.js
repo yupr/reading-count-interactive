@@ -43,5 +43,3 @@ export const getMonthTotalCount = async () => {
     month,
   };
 };
-
-getMonthTotalCount();
