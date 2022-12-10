@@ -7,12 +7,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "create-csv": "node src/createInitialMonth.js",
-    "write-total": "node src/writeTotalCount.js",
-    "total": "node src/getMonthTotalCount.js",
-    "create-csv-confirm": "echo 作成したい日付を例に倣って入力してください。例: 2022年7月分 を作成したい場合、2207と入力する。",
+    "create-csv": "zsh src/shell/createMonth.sh",
+    "write-total": "zsh src/shell/writeTotal.sh",
     "lint": "eslint --ext 'src/**/*.{ts,js}'",
-    "fmt": "prettier --write 'src/**/*.{cjs,js,ts}'",
+    "fmt": "prettier --write 'src/**/*.{js,ts}'",
+    "fmt:shell" : "prettier --write 'src/**/*.{sh}'",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -27,6 +26,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
-    "prettier": "^2.5.1"
+    "prettier": "^2.8.1",
+    "prettier-plugin-sh": "^0.12.8"
   }
 }
