@@ -7,11 +7,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "create-csv": "zsh src/shell/createMonth.sh",
-    "write-total": "zsh src/shell/writeTotal.sh",
+    "create-csv": "sh src/shell/createMonth.sh",
+    "write-total": "sh src/shell/writeTotal.sh",
     "lint": "eslint --ext 'src/**/*.{ts,js}'",
-    "fmt": "prettier --write 'src/**/*.{js,ts}'",
-    "fmt:shell" : "prettier --write 'src/**/*.{sh}'",
+    "fmt": "prettier --write 'src/**/*.{js,ts,sh}'",
     "prepare": "husky install"
   },
   "dependencies": {
