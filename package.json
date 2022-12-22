@@ -9,6 +9,7 @@
   "scripts": {
     "create-csv": "sh src/shell/createMonth.sh",
     "write-total": "sh src/shell/writeTotal.sh",
+    "backup": "sh src/shell/backup.sh",
     "lint": "eslint --ext 'src/**/*.{ts,js}'",
     "fmt": "prettier --write 'src/**/*.{js,ts,sh}'",
     "prepare": "husky install"
