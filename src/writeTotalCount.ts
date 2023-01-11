@@ -1,14 +1,15 @@
-import { readFile, parseCsvToArray, outputCsv } from './common/index.js';
-import { getMonthTotalCount } from './getMonthTotalCount.js';
+import { readFile, parseCsvToArray, outputCsv } from './common/index';
+import { getMonthTotalCount } from './getMonthTotalCount';
 import { writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import _ from 'lodash';
+import { monthlyTotal } from './type';
 
-const filePath = './Archive/2022/total.csv';
+const filePath = './Archive/2023/total.csv';
 
-// 初期値をセット後一番下にtotalとcount(その年の合計)の行を追加
+// 初期値をセット後、月別の合計値の総計(total)を行の最後尾に追加
 const createInitialValue = async () => {
-  const initialValue = [];
+  const initialValue: monthlyTotal[] = [];
 
   const result = [...Array(11)].map((_, i) => {
     const target = i + 1;
@@ -16,12 +17,12 @@ const createInitialValue = async () => {
     return { month: month, count: 0, ...initialValue };
   });
 
-  const createValue = _.cloneDeep([
+  const createTotalCount: monthlyTotal[] = _.cloneDeep([
     ...result,
     ...[{ month: 'total', count: 0 }],
   ]);
 
-  const outputCsvData = await outputCsv(createValue);
+  const outputCsvData = await outputCsv(createTotalCount);
 
   //csvファイルを指定のfilePathに新規作成
   await writeFile(filePath, outputCsvData);
@@ -33,14 +34,19 @@ const writeTotalCount = async () => {
   if (!isFile) await createInitialValue();
 
   const result = await getMonthTotalCount();
-  if (!result) return;
+
+  if (result instanceof Error) {
+    console.error('err', result);
+    return;
+  }
+
+  const file = await readFile(filePath);
+  const outputArrayData: monthlyTotal[] = await parseCsvToArray(file);
 
   const { monthTotalCount, month } = result;
-  const file = await readFile(filePath);
-  const outputArrayData = await parseCsvToArray(file);
-
   let total = 0;
-  outputArrayData.forEach((data, index) => {
+
+  outputArrayData.forEach((data, index: number) => {
     if (data.month === month) {
       data.count = monthTotalCount;
     }
