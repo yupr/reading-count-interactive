@@ -1,6 +1,6 @@
-// 指定した月の多読数をカウント
-import { readFile, parseCsvToArray } from './common/index';
+import { parseCsvToArray } from './common/index';
 import { existsSync } from 'fs';
+import { readFile } from 'fs/promises';
 import { Command } from 'commander';
 import { dailyCount } from './type';
 
@@ -17,29 +17,31 @@ const getMonthFromFilePath = () => {
 };
 
 // 入力した日付の月と、その総数を返す
-export const getMonthTotalCount = async (): Promise<
-  Error | { monthTotalCount: number; month: string }
-> => {
-  const isFile = existsSync(filePath);
+export const getMonthTotalCount = async () => {
+  try {
+    const isFile = existsSync(filePath);
+    if (!isFile) {
+      throw new Error('file not found in output directory');
+    }
 
-  if (!isFile) {
-    return new Error('file not found in output directory');
+    const month = getMonthFromFilePath();
+    const file = await readFile(filePath);
+    const result: dailyCount[] = await parseCsvToArray(file);
+
+    // 冗長なので、for以外で実装
+    let monthTotalCount = 0;
+    for (let i = 0; i < result.length; i++) {
+      const wordCount = Number(result[i].count);
+      monthTotalCount += wordCount;
+    }
+    console.log(month + '月合計:', monthTotalCount);
+
+    return {
+      monthTotalCount,
+      month,
+    };
+  } catch (err) {
+    console.error('getMonthTotalCount error', err);
+    return null;
   }
-
-  const month = getMonthFromFilePath();
-  const file = await readFile(filePath);
-  const result: dailyCount[] = await parseCsvToArray(file);
-
-  let monthTotalCount = 0;
-  for (let i = 0; i < result.length; i++) {
-    const wordCount = Number(result[i].count);
-    monthTotalCount += wordCount;
-  }
-
-  console.log(month + '月合計:', monthTotalCount);
-
-  return {
-    monthTotalCount,
-    month,
-  };
 };

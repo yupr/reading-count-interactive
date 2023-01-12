@@ -23,20 +23,18 @@ const createInitialMonth = () => {
 
 // 変換されたcsvを新規ファイルで作成
 const createNewFile = async () => {
-  const isFile = existsSync(filePath);
+  try {
+    const isFile = existsSync(filePath);
+    if (isFile) {
+      throw new Error('file is exist in output directory');
+    }
 
-  if (isFile) {
-    console.error('file is exist in output directory.');
-    return;
+    const initialMonth = createInitialMonth();
+    const output = await outputCsv(initialMonth);
+    await writeFile(filePath, output); // 出力先と書き出したいファイルを指定
+  } catch (err) {
+    console.error('createNewFile error', err);
   }
-
-  const initialMonth = createInitialMonth();
-  const output = await outputCsv(initialMonth);
-
-  if (!output) return console.error('output csv file is nothing.');
-
-  //書き出したいファイル名を指定
-  await writeFile(filePath, output);
 };
 
 createNewFile();

@@ -1,38 +1,23 @@
 import { dailyCount, monthlyTotal } from './../type';
-import fs from 'fs/promises';
 import { stringify } from 'csv-stringify';
 import { parse } from 'csv-parse';
 
-// ファイルが作成されているかチェック
-export const readFile = async (filePath: string): Promise<Buffer | false> => {
-  try {
-    const file = await fs.readFile(filePath);
-    return file;
-  } catch (err) {
-    return false;
-  }
-};
-
 // csvを配列に変換
-export const parseCsvToArray = (file: Buffer | false): Promise<[]> => {
+export const parseCsvToArray = (file: Buffer): Promise<[]> => {
   return new Promise((resolve, reject) => {
-    if (file) {
-      parse(
-        file,
-        {
-          columns: true,
-        },
-        (err, output) => {
-          if (err) {
-            console.error('CSVファイルを配列に変換できませんでした。', err);
-            reject(err);
-          }
-          resolve(output);
+    parse(
+      file,
+      {
+        columns: true,
+      },
+      (err, output) => {
+        if (err) {
+          console.error('CSVを配列に変換できませんでした。');
+          reject(err);
         }
-      );
-    } else {
-      console.error('file not found');
-    }
+        resolve(output);
+      }
+    );
   });
 };
 
@@ -41,19 +26,18 @@ export const outputCsv = (
   data: dailyCount[] | monthlyTotal[]
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
-    try {
-      stringify(
-        data,
-        {
-          header: true,
-        },
-        (err, output) => {
-          resolve(output);
+    stringify(
+      data,
+      {
+        header: true,
+      },
+      (err, output) => {
+        if (err) {
+          console.error('配列をCSVに変換できませんでした。');
+          reject(err);
         }
-      );
-    } catch (err) {
-      console.error('配列をCSVファイルに変換できませんでした。', err);
-      reject(err);
-    }
+        resolve(output);
+      }
+    );
   });
 };
