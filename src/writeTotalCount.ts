@@ -46,8 +46,6 @@ const writeTotalCount = async () => {
     let total = 0;
 
     outputArrayData.forEach((data, index: number) => {
-      console.log('ddddd', data, index);
-
       if (data.month === month) {
         data.count = monthTotalCount;
       }
