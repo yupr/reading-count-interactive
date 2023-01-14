@@ -28,7 +28,7 @@ export const getMonthTotalCount = async () => {
     const file = await readFile(filePath);
     const result: dailyCount[] = await parseCsvToArray(file);
 
-    // 冗長なので、for以外で実装
+    // Todo: 冗長なので、for以外で実装
     let monthTotalCount = 0;
     for (let i = 0; i < result.length; i++) {
       const wordCount = Number(result[i].count);

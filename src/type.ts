@@ -1,4 +1,4 @@
-// 日別の読数
+// 日別の語数
 export interface dailyCount {
   date: string;
   count: number;
