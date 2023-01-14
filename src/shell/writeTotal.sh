@@ -8,4 +8,4 @@ printf '%s\n' '例: output/2211.csv なら 2211 を入力。'
 printf '%s\n' "$SECTION"
 
 read -r DATE
-node src/writeTotalCount.js "$DATE"
+yarn ts-node src/writeTotalCount.ts "$DATE"

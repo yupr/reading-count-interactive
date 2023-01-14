@@ -3,12 +3,18 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: ['unused-imports'],
-  extends: ['eslint:recommended', 'prettier'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 13,
+    ecmaVersion: 2021,
     sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
+  plugins: ['unused-imports', '@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
   rules: {
     'no-console': 'off', //consoleを許容
     'unused-imports/no-unused-imports': 'error',

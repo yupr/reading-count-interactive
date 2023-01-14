@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5", // どのバージョンでトランスパイルするか。jsを出力するか。
+    "module": "commonjs", // どのモジュールパターンで出力するかを指定。(node.jsでの利用ならcommonjs。ブラウザ側での利用ならumd)
+    "lib": ["es2020", "dom"], // コンパイルする際に使用する組み込みライブラリの指定
+    "strict": true, // strictに関わる様々なオプションが全てtrueになる。
+    "esModuleInterop": true, // デフォルトでtrueになる。default importした時に、コンパイルエラーになる問題を解決。
+    "skipLibCheck": true, // *.d.ts ファイル(パッケージ)に対する型チェックをスキップする。
+    "forceConsistentCasingInFileNames": true // import時にファイルパスの文字列で大文字小文字を区別するかどうかを指定する。
+  }
+}
