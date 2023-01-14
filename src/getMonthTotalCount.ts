@@ -41,7 +41,7 @@ export const getMonthTotalCount = async () => {
       month,
     };
   } catch (err) {
-    console.error('getMonthTotalCount error', err);
-    return null;
+    console.log('err', err);
+    throw new Error('failed getMonthTotalCount');
   }
 };

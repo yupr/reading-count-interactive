@@ -7,11 +7,12 @@ import { monthlyTotal } from './type';
 
 const filePath = './Archive/2023/total.csv';
 
-// 初期値をセット後、月別の合計値の総計(total)を行の最後尾に追加
-const createInitialValue = async () => {
+// 初期値をセットした totat.csv 指定の filepath に作成
+const createTotalInitialValue = async () => {
   try {
     const initialValue: monthlyTotal[] = [];
-    const result = [...Array(11)].map((_, i) => {
+
+    const result = [...Array(12)].map((_, i) => {
       const target = i + 1;
       const month = String(target).padStart(2, '0');
       return { month: month, count: 0, ...initialValue };
@@ -23,10 +24,8 @@ const createInitialValue = async () => {
     ]);
 
     const outputCsvData = await outputCsv(createTotalCount);
-
-    //csvファイルを指定のfilePathに新規作成
     await writeFile(filePath, outputCsvData);
-  } catch (err) {
+  } catch {
     throw new Error('total.csvの作成に失敗');
   }
 };
@@ -35,34 +34,36 @@ const createInitialValue = async () => {
 const writeTotalCount = async () => {
   try {
     const isFile = existsSync(filePath);
-    if (!isFile) await createInitialValue();
+    if (!isFile) {
+      await createTotalInitialValue();
+    }
 
     const result = await getMonthTotalCount();
     const file = await readFile(filePath);
     const outputArrayData: monthlyTotal[] = await parseCsvToArray(file);
 
-    if (result) {
-      const { monthTotalCount, month } = result;
-      let total = 0;
+    const { monthTotalCount, month } = result;
+    let total = 0;
 
-      outputArrayData.forEach((data, index: number) => {
-        if (data.month === month) {
-          data.count = monthTotalCount;
-        }
-        //最後尾で集計結果をtotalのcountに代入
-        if (index === 12) {
-          data.count = total;
-        } else {
-          //1~12月のcountを集計
-          total += Number(data.count);
-        }
-      });
+    outputArrayData.forEach((data, index: number) => {
+      console.log('ddddd', data, index);
 
-      const outputCsvData = await outputCsv(outputArrayData);
-      await writeFile(filePath, outputCsvData);
-    }
+      if (data.month === month) {
+        data.count = monthTotalCount;
+      }
+      //最後尾で集計結果をtotalのcountに代入
+      if (index === 12) {
+        data.count = total;
+      } else {
+        //1~12月のcountを集計
+        total += Number(data.count);
+      }
+    });
+
+    const outputCsvData = await outputCsv(outputArrayData);
+    await writeFile(filePath, outputCsvData);
   } catch (err) {
-    console.error('writeTotalCount error', err);
+    console.error('writeTotalCount err:', err);
   }
 };
 

@@ -33,7 +33,7 @@ const createNewFile = async () => {
     const output = await outputCsv(initialMonth);
     await writeFile(filePath, output); // 出力先と書き出したいファイルを指定
   } catch (err) {
-    console.error('createNewFile error', err);
+    console.error('createNewFile err:', err);
   }
 };
 
