@@ -17,7 +17,6 @@
     "commander": "^9.4.1",
     "csv-parse": "^5.3.3",
     "csv-stringify": "^6.2.0",
-    "husky": "^8.0.3",
     "lodash": "^4.17.21",
     "prettier": "^2.8.4"
   },
@@ -29,6 +28,7 @@
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^13.0.4",
     "prettier-plugin-sh": "^0.12.8",
     "ts-node": "^10.9.1",
