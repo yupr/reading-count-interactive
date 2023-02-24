@@ -10,3 +10,6 @@ Output/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# cache
+.eslintcache
