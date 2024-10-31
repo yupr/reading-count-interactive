@@ -16,14 +16,14 @@ export const parseCsvToArray = (file: Buffer): Promise<[]> => {
           reject(err);
         }
         resolve(output);
-      }
+      },
     );
   });
 };
 
 // 配列をcsvに変換
 export const outputCsv = (
-  data: dailyCount[] | monthlyTotal[]
+  data: dailyCount[] | monthlyTotal[],
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     stringify(
@@ -37,7 +37,7 @@ export const outputCsv = (
           reject(err);
         }
         resolve(output);
-      }
+      },
     );
   });
 };
